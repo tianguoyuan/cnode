@@ -55,7 +55,7 @@ async function onSubmit() {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="修改密码" />
+    <Navbar showBackIcon showHomeIcon title="修改密码" />
 
     <view class="px-3 pt-3">
       <view class="rounded-4 bg-white p-4">

@@ -85,7 +85,7 @@ onReachBottom(() => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon :title="title" />
+    <Navbar showBackIcon showHomeIcon :title="title" />
 
     <view class="px-3 pb-8 pt-3">
       <view class="mb-3 flex rounded-full bg-white p-1">

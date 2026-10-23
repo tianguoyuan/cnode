@@ -84,7 +84,7 @@ onLoad(() => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="注册" />
+    <Navbar showBackIcon showHomeIcon title="注册" />
 
     <view class="px-3 pt-3">
       <view

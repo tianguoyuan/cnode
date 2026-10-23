@@ -155,7 +155,7 @@ onReachBottom(() => {
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
     <view class="bg-[linear-gradient(180deg,#E1FAF7_0.57%,#FFFFFF_100%)] pb-3">
-      <Navbar bgColor="#E9FBF8" :bottomShadow="false" title="招聘专区" />
+      <Navbar bgColor="#E9FBF8" :bottomShadow="false" showBackIcon showHomeIcon title="招聘专区" />
       <view class="px-4 pt-1">
         <view class="text-4.25 text-[#1C2023] font-bold">发现心仪的工作</view>
         <view class="mt-1 text-2.75 text-[#7B8188]">Node.js 技术岗位，远程 / 坐班都有</view>

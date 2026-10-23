@@ -235,7 +235,7 @@ onLoad((options) => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="话题详情">
+    <Navbar showBackIcon showHomeIcon title="话题详情">
       <template #right>
         <TnIcon class="text-[#1C2023]" name="more-horizontal" @click="onMore" />
       </template>

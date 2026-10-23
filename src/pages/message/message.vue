@@ -92,7 +92,7 @@ onPullDownRefresh(async () => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar title="消息">
+    <Navbar showBackIcon showHomeIcon title="消息">
       <template #right>
         <view
           v-if="userStore.isLogin && unreadCount > 0"

@@ -67,7 +67,7 @@ onPullDownRefresh(async () => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="社区达人" />
+    <Navbar showBackIcon showHomeIcon title="社区达人" />
 
     <view class="px-3 pb-8 pt-3">
       <view class="rounded-4 bg-[linear-gradient(135deg,#49B9AD_0%,#2E8F86_100%)] p-4">

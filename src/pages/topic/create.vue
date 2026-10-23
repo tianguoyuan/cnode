@@ -37,7 +37,7 @@ onLoad((options) => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="发布话题" />
+    <Navbar showBackIcon showHomeIcon title="发布话题" />
     <view class="px-3 pt-3">
       <TopicForm :defaultTab="defaultTab" :submitting="submitting" @submit="onSubmit" />
     </view>

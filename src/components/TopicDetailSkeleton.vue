@@ -20,7 +20,7 @@
       </view>
     </view>
 
-    <view class="mt-4 mb-1 flex items-center px-1">
+    <view class="mb-1 mt-4 flex items-center px-1">
       <view class="h-4 w-16 rounded-full bg-[#E6EBF0]" />
       <view class="ml-2 h-3 w-6 rounded-full bg-[#F1F5F9]" />
     </view>

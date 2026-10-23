@@ -97,7 +97,7 @@ onLoad(() => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon title="编辑资料" />
+    <Navbar showBackIcon showHomeIcon title="编辑资料" />
 
     <view v-if="loading" class="flex flex-col items-center py-24">
       <TnIcon class="text-[#9AA0A6]" name="loading" />
