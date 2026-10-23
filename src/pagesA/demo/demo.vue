@@ -2,7 +2,6 @@
 import { useUniAppSystemRectInfo } from '@tuniao/tnui-vue3-uniapp/hooks'
 import { useI18n } from 'vue-i18n'
 
-import Navbar from '@/components/Navbar.vue'
 import { useAppStore } from '@/store/app'
 
 const { navBarInfo } = useUniAppSystemRectInfo()

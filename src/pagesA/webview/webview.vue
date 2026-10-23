@@ -1,9 +1,25 @@
 <script lang="ts" setup>
 const url = ref('')
+
+function safeDecode(value: string) {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
+}
+
 onLoad((query) => {
-  if (!query || !query.url) return
-  url.value = decodeURIComponent(query.url)
-  console.log('query, url', query, url.value)
+  const raw = String(query?.url || '')
+  if (!raw) return
+
+  const target = safeDecode(raw)
+  // 仅允许 http(s) 链接，避免加载 javascript: 等非法地址
+  if (!/^https?:\/\//i.test(target)) {
+    uni.showToast({ icon: 'none', title: '链接不合法' })
+    return
+  }
+  url.value = target
 })
 </script>
 

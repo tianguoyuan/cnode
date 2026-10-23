@@ -5,6 +5,7 @@ import TnIcon from '@tuniao/tnui-vue3-uniapp/components/icon/src/icon.vue'
 
 import Navbar from '@/components/Navbar.vue'
 import Tabbar from '@/components/Tabbar.vue'
+import { IDENTITY_LABEL } from '@/enums/CnodeEnum'
 import { PageEnum } from '@/enums/PageEnum'
 import { getUserDetail } from '@/service/cnode'
 import { logout } from '@/service/cnode/session'
@@ -19,13 +20,8 @@ const loginname = computed(() => detail.value?.loginname || userStore.userInfo?.
 const avatar = computed(() => detail.value?.avatar_url || userStore.userInfo?.avatar_url || '')
 
 const identityText = computed(() => {
-  const map: Record<string, string> = {
-    admin: '管理员',
-    moderator: '版主',
-    recruiter: '招聘方',
-  }
   const list = detail.value?.identities || []
-  return list.map((item) => map[item] || item)
+  return list.map((item) => IDENTITY_LABEL[item] || item)
 })
 
 const joinText = computed(() => {

@@ -9,7 +9,7 @@
     "backgroundColor": "#FFFFFF",
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "全套医疗APP",
+    "navigationBarTitleText": "CNode 社区",
     "navigationStyle": "default"
   },
   "tabBar": {

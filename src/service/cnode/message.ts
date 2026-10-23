@@ -1,4 +1,4 @@
-import type { CnodeEnvelope, MessageItem, MessageList } from './types'
+import type { CnodeEnvelope, MessageList } from './types'
 
 import { cnodeRequest } from './request'
 

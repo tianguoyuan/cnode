@@ -49,6 +49,13 @@ export const MESSAGE_TYPE_LABEL: Record<string, string> = {
   reply2: '回复我',
 }
 
+/** 用户身份 -> 名称 */
+export const IDENTITY_LABEL: Record<string, string> = {
+  admin: '管理员',
+  moderator: '版主',
+  recruiter: '招聘方',
+}
+
 /** 举报原因 */
 export const REPORT_TYPES = [
   { key: 'spam', label: '垃圾广告' },

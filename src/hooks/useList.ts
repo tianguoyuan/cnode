@@ -24,10 +24,18 @@ export function useList<T>(
   const finished = ref(false)
   const error = ref<unknown>(null)
 
-  async function load(reset = false) {
-    if (loading.value) return
-    if (!reset && finished.value) return
+  /** 请求序号，用于丢弃过期响应（如快速切换 tab 时的旧请求） */
+  let requestId = 0
+  /** 当前有效的请求序号 */
+  function isLatest(id: number) {
+    return id === requestId
+  }
 
+  async function load(reset = false) {
+    // 加载更多时避免重复触发；refresh 允许打断进行中的请求
+    if (!reset && (loading.value || finished.value)) return
+
+    const currentId = ++requestId
     loading.value = true
     if (reset) {
       page.value = 1
@@ -36,19 +44,20 @@ export function useList<T>(
 
     try {
       const res = await fetcher({ limit: pageSize, page: page.value })
+      if (!isLatest(currentId)) return
+
       const items = res.list || []
       total.value = res.total || 0
-
       list.value = reset ? items : [...list.value, ...items]
       finished.value = list.value.length >= total.value || items.length < pageSize
-
       if (!finished.value) {
         page.value += 1
       }
+      error.value = null
     } catch (err) {
-      error.value = err
+      if (isLatest(currentId)) error.value = err
     } finally {
-      loading.value = false
+      if (isLatest(currentId)) loading.value = false
     }
   }
 
@@ -62,12 +71,14 @@ export function useList<T>(
     return load(false)
   }
 
-  /** 清空列表 */
+  /** 清空列表，并作废进行中的请求 */
   function clear() {
+    requestId += 1
     list.value = []
     total.value = 0
     page.value = 1
     finished.value = false
+    loading.value = false
   }
 
   if (options.immediate) {

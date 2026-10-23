@@ -80,7 +80,7 @@ onLoad((options) => {
 
 <template>
   <view class="min-h-screen bg-[#F5F7FB]">
-    <Navbar showBackIcon :title="isReset ? '重置密码' : '找回密码'" />
+    <Navbar showBackIcon showHomeIcon :title="isReset ? '重置密码' : '找回密码'" />
 
     <view class="px-3 pt-3">
       <view class="rounded-4 bg-white p-4">

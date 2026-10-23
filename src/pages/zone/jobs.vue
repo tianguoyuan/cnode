@@ -137,6 +137,12 @@ onShow(() => {
   refresh()
 })
 
+// 离开页面时恢复底部 tabbar，避免筛选弹层未关闭导致 tabbar 一直隐藏
+onHide(() => {
+  filterSheet.value = ''
+  tabbarStore.changeHideTabbar(false)
+})
+
 onLoad(() => {
   loadFacets()
   refresh()

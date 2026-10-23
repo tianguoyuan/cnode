@@ -56,8 +56,8 @@ export function plainText(html?: string | null, maxLength = 0): string {
 
 /** 金额格式化（单位：元/月） */
 export function formatSalary(min?: number | null, max?: number | null): string {
-  if (min && max) return `${min}K - ${max}K`
-  if (min) return `${min}K 以上`
-  if (max) return `${max}K 以下`
+  if (min != null && max != null) return `${min}K - ${max}K`
+  if (min != null) return `${min}K 以上`
+  if (max != null) return `${max}K 以下`
   return '面议'
 }

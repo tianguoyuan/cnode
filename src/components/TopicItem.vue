@@ -2,7 +2,7 @@
 import type { Topic } from '@/service/cnode/types'
 
 import { TOPIC_TAB_LABEL } from '@/enums/CnodeEnum'
-import { formatRelativeTime } from '@/utils/format'
+import { formatRelativeTime, plainText } from '@/utils/format'
 
 const props = withDefaults(
   defineProps<{
@@ -60,7 +60,7 @@ const tabLabel = computed(() => TOPIC_TAB_LABEL[props.topic.tab] || props.topic.
       v-if="showExcerpt && topic.content"
       class="line-clamp-2 mt-1.5 text-2.75 text-[#7B8188] leading-relaxed"
     >
-      {{ topic.content.replace(/<[^>]+>/g, '').slice(0, 120) }}
+      {{ plainText(topic.content, 120) }}
     </view>
 
     <view class="mt-2 flex items-center text-2.5 text-[#9AA0A6]">

@@ -1,7 +1,7 @@
 {
-  "name": "全套医疗APP",
+  "name": "CNode 社区",
   "appid": "__UNI__1B64FD5",
-  "description": "complete-medical-care_uniapp",
+  "description": "CNode 社区 uni-app 客户端",
   "versionName": "1.0.0",
   "versionCode": "100",
   "transformPx": false,

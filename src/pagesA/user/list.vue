@@ -19,7 +19,7 @@ const TABS: { key: UserListType; label: string }[] = [
 const loginname = ref('')
 const activeType = ref<UserListType>('topics')
 
-const { clear, finished, list, loading, loadMore, refresh } = useList<Topic>(
+const { finished, list, loading, loadMore, refresh } = useList<Topic>(
   async ({ limit, page }) => {
     const fetcher = {
       collections: getUserCollections,
@@ -60,7 +60,6 @@ function safeDecode(value: string) {
 function changeType(type: UserListType) {
   if (activeType.value === type) return
   activeType.value = type
-  clear()
   refresh()
 }
 

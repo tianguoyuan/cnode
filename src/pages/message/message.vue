@@ -2,13 +2,12 @@
 import type { MessageItem } from '@/service/cnode/types'
 
 import EmptyState from '@/components/EmptyState.vue'
+import MessageItemCard from '@/components/MessageItem.vue'
 import Navbar from '@/components/Navbar.vue'
 import Tabbar from '@/components/Tabbar.vue'
-import { MESSAGE_TYPE_LABEL } from '@/enums/CnodeEnum'
 import { PageEnum } from '@/enums/PageEnum'
 import { getMessages, markAllMessagesRead, markMessageRead } from '@/service/cnode'
 import { useUserStore } from '@/store'
-import { formatRelativeTime, plainText } from '@/utils/format'
 import { goLogin, goTopicDetail } from '@/utils/nav'
 
 const userStore = useUserStore()
@@ -35,10 +34,6 @@ async function loadMessages() {
   } finally {
     loading.value = false
   }
-}
-
-function typeLabel(type: string) {
-  return MESSAGE_TYPE_LABEL[type] || '通知'
 }
 
 async function openMessage(message: MessageItem) {
@@ -130,41 +125,13 @@ onPullDownRefresh(async () => {
       </view>
 
       <view class="px-3 pt-2">
-        <view
+        <MessageItemCard
           v-for="message in unreadMessages"
           :key="message.id"
-          class="mb-2.5 rounded-3 bg-white p-3 active:bg-[#F7F8F9]"
-          @click="openMessage(message)"
-        >
-          <view class="flex items-center">
-            <image
-              class="mr-2 h-7 w-7 flex-shrink-0 rounded-full bg-[#eef0f2]"
-              mode="aspectFill"
-              :src="message.author?.avatar_url"
-            />
-            <view class="min-w-0 flex-1">
-              <view class="flex items-center">
-                <text class="truncate text-3 text-[#1C2023] font-bold">
-                  {{ message.author?.loginname }}
-                </text>
-                <text class="ml-1.5 flex-shrink-0 text-2.5 text-[#9AA0A6]">
-                  {{ typeLabel(message.type) }}
-                </text>
-              </view>
-              <view class="text-2.25 text-[#9AA0A6]">
-                {{ formatRelativeTime(message.create_at) }}
-              </view>
-            </view>
-            <view class="h-2 w-2 flex-shrink-0 rounded-full bg-[#FF5A5F]" />
-          </view>
-
-          <view class="mt-2 text-3 text-[#1C2023] font-bold leading-snug">
-            {{ message.topic?.title }}
-          </view>
-          <view class="line-clamp-2 mt-1 text-2.75 text-[#7B8188] leading-relaxed">
-            {{ plainText(message.reply?.content, 100) }}
-          </view>
-        </view>
+          :message="message"
+          unread
+          @click="openMessage"
+        />
 
         <EmptyState v-if="!loading && !unreadCount" :image="false" text="没有未读消息" />
       </view>
@@ -175,40 +142,12 @@ onPullDownRefresh(async () => {
         </view>
 
         <view class="px-3 pb-28 pt-2">
-          <view
+          <MessageItemCard
             v-for="message in readMessages"
             :key="message.id"
-            class="mb-2.5 rounded-3 bg-white p-3 opacity-80 active:bg-[#F7F8F9]"
-            @click="openMessage(message)"
-          >
-            <view class="flex items-center">
-              <image
-                class="mr-2 h-7 w-7 flex-shrink-0 rounded-full bg-[#eef0f2]"
-                mode="aspectFill"
-                :src="message.author?.avatar_url"
-              />
-              <view class="min-w-0 flex-1">
-                <view class="flex items-center">
-                  <text class="truncate text-3 text-[#1C2023]">
-                    {{ message.author?.loginname }}
-                  </text>
-                  <text class="ml-1.5 flex-shrink-0 text-2.5 text-[#9AA0A6]">
-                    {{ typeLabel(message.type) }}
-                  </text>
-                </view>
-                <view class="text-2.25 text-[#9AA0A6]">
-                  {{ formatRelativeTime(message.create_at) }}
-                </view>
-              </view>
-            </view>
-
-            <view class="mt-2 text-3 text-[#7B8188] font-bold leading-snug">
-              {{ message.topic?.title }}
-            </view>
-            <view class="line-clamp-2 mt-1 text-2.75 text-[#9AA0A6] leading-relaxed">
-              {{ plainText(message.reply?.content, 100) }}
-            </view>
-          </view>
+            :message="message"
+            @click="openMessage"
+          />
         </view>
       </template>
 

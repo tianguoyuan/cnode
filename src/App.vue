@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onHide, onLaunch, onShow } from '@dcloudio/uni-app'
+import { onHide, onLaunch } from '@dcloudio/uni-app'
 
 import { navigateToInterceptor } from './interceptors/route'
 import { restoreSession } from './service/cnode/session'
@@ -10,7 +10,6 @@ const appStore = useAppStore()
 function setAppInfo(options: { path: string }) {
   navigateToInterceptor.invoke({ url: '/' + options.path })
   const windowInfo = uni.getWindowInfo()
-  console.log('屏幕高度：', windowInfo.screenHeight, windowInfo)
   appStore.systemScreenHeight = windowInfo.screenHeight
 }
 
@@ -24,7 +23,6 @@ function onResize() {
 // #endif
 
 onLaunch((options) => {
-  console.log('App Launch', options)
   // 恢复本地登录态（校验 accesstoken 并同步用户信息）
   restoreSession()
   if (!options) return
@@ -34,14 +32,10 @@ onLaunch((options) => {
   window.addEventListener('resize', onResize)
   // #endif
 })
-onShow(() => {
-  console.log('App Show')
-})
 onHide(() => {
   // #ifndef MP
   window.removeEventListener('resize', onResize)
   // #endif
-  console.log('App Hide')
 })
 </script>
 

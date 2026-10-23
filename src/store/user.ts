@@ -40,8 +40,6 @@ export const useUserStore = defineStore(
 
     return {
       accesstoken,
-      changeAccesstoken: setAccesstoken,
-      changeUserInfo: setUserInfo,
       clearUserInfo,
       isBlock,
       isLogin,

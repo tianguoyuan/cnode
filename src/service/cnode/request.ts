@@ -5,11 +5,13 @@ import qs from 'qs'
 import { PageEnum } from '@/enums/PageEnum'
 import { useUserStore } from '@/store'
 
-/** 默认接口地址，可通过环境变量 VITE_CNODE_BASEURL 覆盖 */
-const DEFAULT_BASE_URL = 'https://api.cnodejs.org/api/v1'
-
 /** 请求超时时间 */
 const TIMEOUT = 30 * 1000
+
+/** 统一轻提示 */
+function showErrorToast(title: string) {
+  uni.showToast({ duration: 2000, icon: 'none', title })
+}
 
 /** 接口错误 */
 export class ApiError extends Error {
@@ -43,12 +45,6 @@ export interface CnodeRequestOptions {
   toast?: boolean
   /** 接口路径，如 /topics */
   url: string
-}
-
-/** 获取接口基础地址 */
-export function getCnodeBaseUrl() {
-  const baseUrl = ''
-  return baseUrl.replace(/\/+$/, '')
 }
 
 /** 过滤掉空值后拼接 query */
@@ -105,8 +101,9 @@ export function cnodeRequest<T extends CnodeEnvelope = CnodeEnvelope>(
     }
   }
 
-  const fullUrl = getCnodeBaseUrl() + url + buildQueryString(finalQuery)
-  console.log('fullUrl', fullUrl)
+  // 仅拼相对路径，域名（含 H5 代理前缀）由全局 request 拦截器统一处理
+  const fullUrl = url + buildQueryString(finalQuery)
+
   if (loading) {
     uni.showLoading({ mask: true, title: '加载中...' })
   }
@@ -119,12 +116,11 @@ export function cnodeRequest<T extends CnodeEnvelope = CnodeEnvelope>(
         }
       },
       data: method === 'GET' ? undefined : finalData,
-      fail(err) {
-        const error = new ApiError('网络错误，换个网络试试', -1)
+      fail() {
         if (toast) {
-          uni.showToast({ duration: 2000, icon: 'none', title: '网络错误，换个网络试试' })
+          showErrorToast('网络错误，换个网络试试')
         }
-        reject(error || err)
+        reject(new ApiError('网络错误，换个网络试试', -1))
       },
       header: {
         'Content-Type': 'application/json',
@@ -145,7 +141,7 @@ export function cnodeRequest<T extends CnodeEnvelope = CnodeEnvelope>(
         if (statusCode === 401) {
           userStore.clearUserInfo()
           if (toast) {
-            uni.showToast({ duration: 2000, icon: 'none', title: '登录已过期，请重新登录' })
+            showErrorToast('登录已过期，请重新登录')
           }
           if (redirect && !isOnLoginPage()) {
             uni.navigateTo({ url: PageEnum.LOGIN_PATH })
@@ -155,7 +151,7 @@ export function cnodeRequest<T extends CnodeEnvelope = CnodeEnvelope>(
         }
 
         if (toast) {
-          uni.showToast({ duration: 2000, icon: 'none', title: message })
+          showErrorToast(message)
         }
         reject(error)
       },
