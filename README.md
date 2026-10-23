@@ -1,14 +1,14 @@
 ## 预览
 
-[h5](https://complete-medical-care-uniapp.netlify.app/)
+[h5](https://cnode-uniapp.netlify.app/)
 
-<table align="center">
+<!-- <table align="center">
 <tr>
   <td><img width="160" src="./screenshots/h5.png"></td>
   <td><img width="160" src="./screenshots/android.png"></td>
   <td><img width="160" src="./screenshots/wechat.png"></td>
 </tr>
-</table>
+</table> -->
 
 ## ⚙️ 环境
 
