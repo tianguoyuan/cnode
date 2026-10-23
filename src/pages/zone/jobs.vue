@@ -11,6 +11,7 @@ import Tabbar from '@/components/Tabbar.vue'
 import { REMOTE_LABEL, REMOTE_OPTIONS } from '@/enums/CnodeEnum'
 import { PageEnum } from '@/enums/PageEnum'
 import { getJobFacets, getJobs } from '@/service/cnode'
+import { useTabbarStore } from '@/store/tabbar'
 import { goTopicDetail, requireLogin } from '@/utils/nav'
 
 type SheetType = '' | 'location' | 'remote' | 'salary'
@@ -34,7 +35,7 @@ const { finished, list, loading, loadMore, refresh } = useList<JobCard>(
   async ({ limit, page }) => {
     const res = await getJobs({
       limit,
-      location,
+      location: location.value || undefined,
       page,
       remote: remote.value || undefined,
       salary_min: salaryMin.value || undefined,
@@ -85,9 +86,14 @@ const currentSheetValue = computed(() => {
   if (filterSheet.value === 'remote') return remote.value
   return salaryMin.value
 })
-
+const tabbarStore = useTabbarStore()
 function openSheet(type: SheetType) {
   filterSheet.value = type
+  tabbarStore.changeHideTabbar(true)
+}
+function closeFilterSheet() {
+  filterSheet.value = ''
+  tabbarStore.changeHideTabbar(false)
 }
 
 function selectFilter(value: string) {
@@ -96,6 +102,8 @@ function selectFilter(value: string) {
   if (filterSheet.value === 'salary') salaryMin.value = value
   filterSheet.value = ''
   refresh()
+
+  tabbarStore.changeHideTabbar(false)
 }
 
 function resetFilter() {
@@ -204,7 +212,7 @@ onReachBottom(() => {
     <view
       v-if="filterSheet"
       class="fixed inset-0 z-[10000] bg-black/40 backdrop-blur-[1px] transition-opacity duration-200"
-      @click="filterSheet = ''"
+      @click="closeFilterSheet"
     >
       <view
         class="animate-slide-up absolute bottom-0 left-0 right-0 mx-auto max-w-[500px] rounded-t-4 bg-white shadow-[0_-8px_40px_rgba(0,0,0,0.08)] pb-safe"
@@ -212,7 +220,7 @@ onReachBottom(() => {
       >
         <view class="flex items-center justify-between border-b border-[#F0F2F4] px-4 py-3">
           <text class="text-3.25 text-[#1C2023] font-bold">{{ sheetTitle }}</text>
-          <TnIcon class="text-[#9AA0A6]" name="close" @click="filterSheet = ''" />
+          <TnIcon class="text-[#9AA0A6]" name="close" @click="closeFilterSheet" />
         </view>
         <scroll-view class="max-h-80" scrollY>
           <view

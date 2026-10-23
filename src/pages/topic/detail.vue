@@ -6,6 +6,7 @@ import TnIcon from '@tuniao/tnui-vue3-uniapp/components/icon/src/icon.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import Navbar from '@/components/Navbar.vue'
 import ReplyItem from '@/components/ReplyItem.vue'
+import TopicDetailSkeleton from '@/components/TopicDetailSkeleton.vue'
 import { REMOTE_LABEL, REPORT_TYPES, TOPIC_TAB_LABEL } from '@/enums/CnodeEnum'
 import { PageEnum } from '@/enums/PageEnum'
 import {
@@ -240,10 +241,7 @@ onLoad((options) => {
       </template>
     </Navbar>
 
-    <view v-if="loading && !topic" class="flex flex-col items-center py-24">
-      <TnIcon class="text-[#9AA0A6]" name="loading" />
-      <text class="mt-2 text-3 text-[#9AA0A6]">加载中...</text>
-    </view>
+    <TopicDetailSkeleton v-if="loading && !topic" />
 
     <view v-else-if="!topic" class="px-3 pt-4">
       <EmptyState text="话题不存在或已被删除" />
