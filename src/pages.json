@@ -1,0 +1,236 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
+    }
+  },
+  "globalStyle": {
+    "backgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "全套医疗APP",
+    "navigationStyle": "default"
+  },
+  "tabBar": {
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "black",
+    "color": "#999999",
+    "custom": true,
+    "fontSize": "10px",
+    "height": "50px",
+    "iconWidth": "24px",
+    "list": [
+      {
+        "pagePath": "pages/home/home"
+      },
+      {
+        "pagePath": "pages/zone/jobs"
+      },
+      {
+        "pagePath": "pages/message/message"
+      },
+      {
+        "pagePath": "pages/mine/mine"
+      }
+    ],
+    "selectedColor": "#018d71",
+    "spacing": "3px"
+  },
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "type": "home",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "CNode 社区",
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/message/message",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "消息",
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/mine/mine",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "我的"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/topic/create",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "发布话题"
+      },
+      "needLogin": true
+    },
+    {
+      "path": "pages/topic/detail",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "话题详情"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/user/login",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "登录"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/user/signup",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "注册"
+      },
+      "needLogin": false
+    },
+    {
+      "path": "pages/zone/jobs",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "招聘专区",
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark"
+      },
+      "needLogin": false
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pagesA",
+      "pages": [
+        {
+          "path": "auth/reset-password",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "找回密码"
+          },
+          "needLogin": false
+        },
+        {
+          "path": "demo/demo",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "demo"
+          }
+        },
+        {
+          "path": "reply/edit",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "编辑回复"
+          },
+          "needLogin": true
+        },
+        {
+          "path": "topic/edit",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "编辑话题"
+          },
+          "needLogin": true
+        },
+        {
+          "path": "user/detail",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "用户主页"
+          },
+          "needLogin": false
+        },
+        {
+          "path": "user/list",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "用户内容",
+            "enablePullDownRefresh": true,
+            "backgroundTextStyle": "dark"
+          },
+          "needLogin": false
+        },
+        {
+          "path": "user/password",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "修改密码"
+          },
+          "needLogin": true
+        },
+        {
+          "path": "user/rank",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "社区达人",
+            "enablePullDownRefresh": true,
+            "backgroundTextStyle": "dark"
+          },
+          "needLogin": false
+        },
+        {
+          "path": "user/setting",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "编辑资料"
+          },
+          "needLogin": true
+        },
+        {
+          "path": "webview/webview",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "webview"
+          }
+        }
+      ]
+    }
+  ]
+}
