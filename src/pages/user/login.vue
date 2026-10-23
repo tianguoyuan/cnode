@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useUniAppSystemRectInfo } from '@tuniao/tnui-vue3-uniapp/hooks'
+import { useUniAppSystemRectInfo } from '@tuniao/tnui-vue3-uniapp'
 
+import Navbar from '@/components/Navbar.vue'
 import { PageEnum } from '@/enums/PageEnum'
 import { loginByPassword, loginByToken } from '@/service/cnode/session'
 import { useUserStore } from '@/store'
@@ -114,16 +115,15 @@ onLoad((options) => {
       <view class="absolute h-32 w-32 rounded-full bg-white/10 -right-8 -top-6" />
       <view class="absolute left-10 h-24 w-24 rounded-full bg-white/10 -bottom-10" />
 
-      <view :style="{ height: navBarInfo.height + 'px' }">
-        <view :style="{ height: navBarInfo.statusHeight + 'px' }" />
-        <view
-          class="relative z-1 flex items-center px-4"
-          :style="{ height: navBarInfo.height - navBarInfo.statusHeight + 'px' }"
-          @click="goHome"
-        >
-          <text class="text-3.5 text-white/80">‹ 返回</text>
-        </view>
-      </view>
+      <Navbar
+        bgColor="transparent"
+        :bottomShadow="false"
+        iconColor="#FFFFFF"
+        showBackIcon
+        showHomeIcon
+        textColor="#FFFFFF"
+        title=""
+      />
 
       <view class="relative z-1 px-5 pt-2">
         <view class="text-6 text-white font-bold">登录</view>

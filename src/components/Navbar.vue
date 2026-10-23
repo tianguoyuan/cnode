@@ -93,27 +93,27 @@ function handleClickHomeIcon() {
     <template #back>
       <view
         v-if="showLeftBox"
-        class="relative box-border h-8 flex items-center justify-center rounded-full bg-[rgba(28,32,35,0.06)] text-3.75 ring-1 ring-[rgba(28,32,35,0.04)] will-change-transform active:scale-95 active:opacity-80"
-        :class="[props.showBackIcon && props.showHomeIcon ? 'w-16' : 'w-8']"
+        class="relative box-border h-8 w-full flex items-center justify-center rounded-full bg-[rgba(0,0,0,.15)] text-3.75"
+        :class="[!props.showBackIcon || !props.showHomeIcon ? 'w-70%!' : '']"
       >
-        <view
+        <TnIcon
           v-if="props.showBackIcon"
-          class="h-full flex flex-1 items-center justify-center"
+          color="#fff"
+          :customClass="[props.showBackIcon && props.showHomeIcon ? 'flex-1' : ''].join(' ')"
+          name="left-arrow"
           @click="handleClickBackIcon"
-        >
-          <TnIcon color="#1C2023" name="left-arrow" />
-        </view>
-        <view
-          v-if="props.showBackIcon && props.showHomeIcon"
-          class="h-4 w-1px flex-shrink-0 bg-[rgba(28,32,35,0.12)]"
         />
         <view
+          v-if="props.showBackIcon && props.showHomeIcon"
+          class="absolute left-50% top-50% h-60% w-1px translate-x--50% translate-y--50% bg-#fff opacity-20"
+        ></view>
+        <TnIcon
           v-if="props.showHomeIcon"
-          class="h-full flex flex-1 items-center justify-center"
+          color="#fff"
+          :customClass="[props.showBackIcon && props.showHomeIcon ? 'flex-1' : ''].join(' ')"
+          name="home-capsule-fill"
           @click="handleClickHomeIcon"
-        >
-          <TnIcon color="#1C2023" name="home-capsule-fill" />
-        </view>
+        />
       </view>
     </template>
   </TnNavbar>
