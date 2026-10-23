@@ -10,3 +10,10 @@
   for = "/**.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[redirects]]
+# 示例：将 /api 接口代理到 http://api-demo
+from = "/api-cnode-mobile/*"
+to = "https://api.cnodejs.org/api/v1/:splat"
+status = 200
+force = true
