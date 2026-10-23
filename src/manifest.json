@@ -1,6 +1,6 @@
 {
   "name": "CNode 社区",
-  "appid": "__UNI__1B64FD5",
+  "appid": "",
   "description": "CNode 社区 uni-app 客户端",
   "versionName": "1.0.0",
   "versionCode": "100",
@@ -89,7 +89,7 @@
   },
   "quickapp": {},
   "mp-weixin": {
-    "appid": "wx2b8a370a5e83450d",
+    "appid": "",
     "setting": {
       "urlCheck": true,
       "autoAudits": false,
